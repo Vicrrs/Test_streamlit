@@ -20,15 +20,29 @@ fig_receita_estados = cria_grafico_receita_estados(receita_estados)
 receita_categoria = cria_tabela_receita_categoria(dados)
 fig_receita_categorias = cria_grafico_receita_categorias(receita_categoria)
 
-coluna1, coluna2 = st.columns(2)
-with coluna1:
-    st.metric('Receita', formata_numero(dados['Preço'].sum(), 'R$'))
-    st.plotly_chart(fig_mapa_receita, use_container_width=True)
-    st.plotly_chart(fig_receita_estados, use_container_width=True)
+aba1, aba2, aba3 = st.tabs(['Receita', 'Quantidade de vendas', 'Vendendores'])
+with aba1:
+    coluna1, coluna2 = st.columns(2)
+    with coluna1:
+        st.metric('Receita', formata_numero(dados['Preço'].sum(), 'R$'))
+        st.plotly_chart(fig_mapa_receita, use_container_width=True)
+        st.plotly_chart(fig_receita_estados, use_container_width=True)
+    with coluna2:
+        st.metric('Quantidade de Vendas', formata_numero(dados.shape[0]))
+        st.plotly_chart(fig_receita_mensal)
+        st.plotly_chart(fig_receita_categorias, use_container_width=True)
+        
+with aba2:
+    coluna1, coluna2 = st.columns(2)
+    with coluna1:
+        st.metric('Receita', formata_numero(dados['Preço'].sum(), 'R$'))
+    with coluna2:
+        st.metric('Quantidade de Vendas', formata_numero(dados.shape[0]))
+        
+with aba3:
+    coluna1, coluna2 = st.columns(2)
+    with coluna1:
+        st.metric('Receita', formata_numero(dados['Preço'].sum(), 'R$'))
+    with coluna2:
+        st.metric('Quantidade de Vendas', formata_numero(dados.shape[0]))
 
-with coluna2:
-    st.metric('Quantidade de Vendas', formata_numero(dados.shape[0]))
-    st.plotly_chart(fig_receita_mensal)
-    st.plotly_chart(fig_receita_categorias, use_container_width=True)
-
-st.dataframe(dados)
