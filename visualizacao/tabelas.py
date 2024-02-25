@@ -12,3 +12,7 @@ def cria_tabela_receita_mensal(dados):
     receita_mensal['Mes'] = receita_mensal['Data da Compra'].dt.month_name()
 
     return receita_mensal
+
+def cria_tabela_receita_categoria(dados):
+    receita_categorias = dados.groupby('Categoria do Produto')[['Preço']].sum().sort_values('Preço', ascending=False)
+    return receita_categorias
