@@ -24,3 +24,21 @@ def cria_grafico_receita_mensal(receita_mensal):
     
     fig_receita_mensal.update_layout(yaxis_title='Receita')
     return fig_receita_mensal
+
+def cria_grafico_receita_estados(receita_estados):
+    fig_receita_estados = px.bar(receita_estados.head(),
+                            x = 'Local da compra',
+                            y = 'Preço',
+                            text_auto=True,
+                            title="Top estados (receita)")
+    fig_receita_estados.update_layout(yaxis_title='Receita')
+    return fig_receita_estados
+
+def cria_grafico_receita_categorias(receita_categorias):
+    fig_receita_categorias = px.bar(receita_categorias,
+                                    x=receita_categorias.index,
+                                    y='Preço',
+                                    text_auto=True,
+                                    title='Receita por categoria')
+    fig_receita_categorias.update_layout(yaxis_title='Receita')
+    return fig_receita_categorias
