@@ -7,7 +7,7 @@ def cria_tabela_receita_estados(dados):
 
 
 def cria_tabela_receita_mensal(dados):
-    receita_mensal = dados.set_index('Data da Compra').groupby(pd.Grouper(freq='M'))['Preço'].sum().reset_index()
+    receita_mensal = dados.set_index('Data da Compra').groupby(pd.Grouper(freq='ME'))['Preço'].sum().reset_index()
     receita_mensal['Ano'] = receita_mensal['Data da Compra'].dt.year
     receita_mensal['Mes'] = receita_mensal['Data da Compra'].dt.month_name()
 
