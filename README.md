@@ -28,3 +28,17 @@ dashboard_vendas/
     └── formatadores.py
 
 ```
+
+---
+
+### Para visualizar o projeto execute os comandos abaixo
+
+```docker
+docker build -t dash .
+```
+
+```docker
+docker run -p 8501:8501 dash
+```
+
+Depois de executar os comandos acima acesse `http://localhost:8501/` ou `127.0.0.1:8501`
